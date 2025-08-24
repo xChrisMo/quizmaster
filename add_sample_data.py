@@ -2,7 +2,7 @@
 """
 Script to add sample data to the database
 """
-from backend.models import setup_db, Question, Category
+from backend.models import setup_db, Question, Category, db
 from backend.flaskr import create_app
 
 def add_sample_data():
@@ -22,7 +22,8 @@ def add_sample_data():
         
         for category_name in categories:
             category = Category(type=category_name)
-            category.insert()
+            db.session.add(category)
+            db.session.commit()
             print(f"Added category: {category_name}")
         
         # Add some sample questions
