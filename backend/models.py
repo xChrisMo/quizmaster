@@ -6,14 +6,20 @@ from dotenv import load_dotenv
 
 load_dotenv() 
 
+# For Heroku: Use DATABASE_URL if available, otherwise use local settings
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-DB_USER     = os.getenv("DB_USER", "student")
-DB_PASSWORD = os.getenv("DB_PASSWORD", "student")
-DB_HOST     = os.getenv("DB_HOST", "localhost")
-DB_PORT     = os.getenv("DB_PORT", "5432")
-DB_NAME     = os.getenv("DB_NAME", "trivia")
-
-database_path = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+if DATABASE_URL:
+    # Heroku environment - use their database URL
+    database_path = DATABASE_URL
+else:
+    # Local environment - use your .env file
+    DB_USER     = os.getenv("DB_USER", "student")
+    DB_PASSWORD = os.getenv("DB_PASSWORD", "student")
+    DB_HOST     = os.getenv("DB_HOST", "localhost")
+    DB_PORT     = os.getenv("DB_PORT", "5432")
+    DB_NAME     = os.getenv("DB_NAME", "trivia")
+    database_path = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 db = SQLAlchemy()
 
