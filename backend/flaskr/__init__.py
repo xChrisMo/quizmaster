@@ -30,16 +30,6 @@ def create_app(test_config=None):
     def serve_index():
         return app.send_static_file('index.html')
     
-    @app.route('/<path:path>')
-    def serve_static(path):
-        # Don't serve React for API routes
-        if path.startswith(('categories', 'questions', 'quizzes')):
-            abort(404)
-        if os.path.exists(os.path.join(app.static_folder, path)):
-            return app.send_static_file(path)
-        else:
-            return app.send_static_file('index.html')
-    
     """
 
     Create an endpoint to handle GET requests for all available categories.
