@@ -298,3 +298,6 @@ def create_app(test_config=None):
     
     
     return app
+
+# Create the app instance for Gunicorn
+app = create_app()
