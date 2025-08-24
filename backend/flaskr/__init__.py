@@ -249,6 +249,18 @@ def create_app(test_config=None):
     
     """
 
+    Serve React frontend
+    """
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<path:path>')
+    def serve(path):
+        if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+            return app.send_static_file(path)
+        else:
+            return app.send_static_file('index.html')
+
+    """
+
     Create error handlers for all expected errors
     including 404 and 422.
     """
