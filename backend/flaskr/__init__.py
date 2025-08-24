@@ -24,15 +24,18 @@ def create_app(test_config=None):
     
     """
 
-    Serve React frontend - must be first to avoid conflicts with API routes
+    Serve React frontend
     """
-    @app.route('/', defaults={'path': ''})
+    @app.route('/')
+    def serve_index():
+        return app.send_static_file('index.html')
+    
     @app.route('/<path:path>')
-    def serve(path):
+    def serve_static(path):
         # Don't serve React for API routes
         if path.startswith(('categories', 'questions', 'quizzes')):
             abort(404)
-        if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        if os.path.exists(os.path.join(app.static_folder, path)):
             return app.send_static_file(path)
         else:
             return app.send_static_file('index.html')
