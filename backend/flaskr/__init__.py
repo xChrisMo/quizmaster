@@ -10,7 +10,7 @@ QUESTIONS_PER_PAGE = 10
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, static_folder='static')
+    app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
