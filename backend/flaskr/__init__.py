@@ -24,7 +24,7 @@ def create_app(test_config=None):
     
     """
 
-    Serve React frontend
+    Serve React frontend - must be first to avoid conflicts with API routes
     """
     @app.route('/')
     def serve_index():
