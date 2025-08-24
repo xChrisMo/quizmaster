@@ -11,7 +11,11 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 if DATABASE_URL:
     # Heroku environment - use their database URL
-    database_path = DATABASE_URL
+    # Fix the URL format for SQLAlchemy
+    if DATABASE_URL.startswith('postgres://'):
+        database_path = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+    else:
+        database_path = DATABASE_URL
 else:
     # Local environment - use your .env file
     DB_USER     = os.getenv("DB_USER", "student")
