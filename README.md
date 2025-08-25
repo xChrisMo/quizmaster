@@ -1,4 +1,4 @@
-# QuizMaster - Modern Trivia Application
+# [QuizMaster - Modern Trivia Application](https://your-quizmaster-app-c4690209a8b5.herokuapp.com/)
 
 A full-stack trivia quiz application built with Flask backend and React frontend, featuring a modern minimalist design.
 
@@ -10,7 +10,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 - **Category Filtering**: Browse questions by different categories
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Flask**: Python web framework
