@@ -144,8 +144,8 @@ class QuestionView extends Component {
               >
                 <div className='category-icon'>
                   <img
-                    alt={`${this.state.categories[id].toLowerCase()}`}
-                    src={`${this.state.categories[id].toLowerCase()}.svg`}
+                    alt={`${this.state.categories[id] ? this.state.categories[id].toLowerCase() : 'unknown'}`}
+                    src={`${this.state.categories[id] ? this.state.categories[id].toLowerCase() : 'unknown'}.svg`}
                   />
                 </div>
                 <h3>{this.state.categories[id]}</h3>

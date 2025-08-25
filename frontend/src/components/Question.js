@@ -22,10 +22,10 @@ class Question extends Component {
           <div className='question-meta'>
             <div className='category-badge'>
               <img
-                alt={`${category.toLowerCase()}`}
-                src={`${category.toLowerCase()}.svg`}
+                alt={`${category ? category.toLowerCase() : 'unknown'}`}
+                src={`${category ? category.toLowerCase() : 'unknown'}.svg`}
               />
-              <span>{category}</span>
+              <span>{category || 'Unknown'}</span>
             </div>
             <div className='difficulty-badge'>
               Level {difficulty}
