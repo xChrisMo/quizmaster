@@ -2,9 +2,9 @@
 
 A full-stack trivia quiz application built with Flask backend and React frontend, featuring a modern minimalist design.
 
-## 🚀 Features
+## Features
 
-- **Modern UI**: Clean, minimalist design with gradient backgrounds and smooth animations
+- **Modern UI**: Minimal design with gradient backgrounds and smooth animations
 - **Quiz Functionality**: Interactive trivia quizzes with multiple categories
 - **Question Management**: Add, edit, and delete questions through the web interface
 - **Category Filtering**: Browse questions by different categories
@@ -22,9 +22,9 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 ### Frontend
 - **React**: JavaScript library for building user interfaces
 - **CSS3**: Modern styling with gradients and animations
-- **Fetch API**: For backend communication
+- **Fetch API**: For communication to backened
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── backend/
@@ -43,7 +43,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 └── setup-trivia.sh            # Database setup script
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -54,15 +54,14 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
-   cd quizmaster-app
+   standard git clone but with a + cd quizmaster-app
    ```
 
 2. **Set up the backend**
    ```bash
    cd backend
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate 
    pip install -r requirements.txt
    ```
 
@@ -78,7 +77,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 4. **Start the backend server**
    ```bash
    export FLASK_APP=flaskr
-   export FLASK_ENV=development
+   export FLASK_ENV=development (optional of course)
    flask run
    ```
 
@@ -94,7 +93,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:5000
 
-## 🌐 Deployment
+## Hosting
 
 ### Heroku Deployment
 
@@ -118,7 +117,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
    heroku run "python -c 'from backend.models import setup_db; from backend.flaskr import create_app; app = create_app(); app.app_context().push(); setup_db(app)'"
    ```
 
-## 📊 API Endpoints
+## Endpoints
 
 - `GET /categories` - Get all categories
 - `GET /questions` - Get paginated questions
@@ -127,7 +126,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 - `DELETE /questions/{id}` - Delete a question
 - `POST /quizzes` - Start a new quiz
 
-## 🎨 Design Features
+## Design Features
 
 - **Gradient Backgrounds**: Modern color schemes
 - **Card-based Layout**: Clean question and category displays
@@ -135,7 +134,7 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 - **Responsive Grid**: Adapts to different screen sizes
 - **Modern Typography**: Clean, readable fonts
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -143,11 +142,11 @@ A full-stack trivia quiz application built with Flask backend and React frontend
 4. Test thoroughly
 5. Submit a pull request
 
-## 📝 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Flask documentation and community
 - React documentation and ecosystem
