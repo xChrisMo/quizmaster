@@ -2,8 +2,11 @@
 """
 Script to add sample data to the database
 """
-from backend.models import setup_db, Question, Category, db
-from backend.flaskr import create_app
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 'backend'))
+from models import setup_db, Question, Category, db
+from flaskr import create_app
 
 def add_sample_data():
     app = create_app()

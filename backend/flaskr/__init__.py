@@ -4,13 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS #, cross_origin
 import random
 
-from backend.models import setup_db, Question, Category
+from models import setup_db, Question, Category
 
 QUESTIONS_PER_PAGE = 10
 
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
+    app = Flask(__name__, static_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static'), static_url_path='/static_files')
     setup_db(app)
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 
@@ -32,14 +32,59 @@ def create_app(test_config=None):
     
     @app.route('/static/<path:path>')
     def serve_static_files(path):
-        return app.send_static_file(path)
+        from flask import send_from_directory
+        try:
+            # Serve from the nested static directory
+            static_dir = os.path.join(app.static_folder, 'static')
+            return send_from_directory(static_dir, path)
+        except Exception as e:
+            print(f"Error serving static file: {path}, Error: {e}")
+            abort(404)
     
+    # Serve SVG icons from the root static directory
+    @app.route('/<filename>.svg')
+    def serve_svg_files(filename):
+        from flask import send_from_directory
+        try:
+            print(f"🎨 SVG REQUEST: {filename}.svg from {app.static_folder}")
+            response = send_from_directory(app.static_folder, filename + '.svg')
+            response.headers['Content-Type'] = 'image/svg+xml'
+            print(f"✅ SVG SERVED: {filename}.svg")
+            return response
+        except Exception as e:
+            print(f"❌ Error serving SVG file: {filename}.svg, Error: {e}")
+            abort(404)
+    
+    # Serve other static assets (png, ico, etc.) from root static directory
+    @app.route('/<filename>.png')
+    def serve_png_files(filename):
+        from flask import send_from_directory
+        try:
+            return send_from_directory(app.static_folder, filename + '.png')
+        except Exception as e:
+            print(f"Error serving PNG file: {filename}.png, Error: {e}")
+            abort(404)
+    
+    # Serve manifest.json and other specific files
+    @app.route('/manifest.json')
+    def serve_manifest():
+        return app.send_static_file('manifest.json')
+    
+    @app.route('/favicon.ico')
+    def serve_favicon():
+        return app.send_static_file('favicon.ico')
+    
+    # Catch-all route for React routes (must be last)
     @app.route('/<path:path>')
     def serve_react_routes(path):
         # Don't serve React for API routes
         if path.startswith(('categories', 'questions', 'quizzes')):
             abort(404)
-        return app.send_static_file('index.html')
+        # For any other path that doesn't have an extension, serve React
+        if '.' not in path:
+            return app.send_static_file('index.html')
+        else:
+            abort(404)
     
     """
 

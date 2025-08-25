@@ -14,16 +14,13 @@ if DATABASE_URL:
     # Fix the URL format for SQLAlchemy
     if DATABASE_URL.startswith('postgres://'):
         database_path = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+    elif DATABASE_URL.startswith('sqlite://'):
+        database_path = DATABASE_URL
     else:
         database_path = DATABASE_URL
 else:
-    # Local environment - use your .env file
-    DB_USER     = os.getenv("DB_USER", "student")
-    DB_PASSWORD = os.getenv("DB_PASSWORD", "student")
-    DB_HOST     = os.getenv("DB_HOST", "localhost")
-    DB_PORT     = os.getenv("DB_PORT", "5432")
-    DB_NAME     = os.getenv("DB_NAME", "trivia")
-    database_path = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    # Local environment - use SQLite for easier setup
+    database_path = "sqlite:///trivia.db"
 
 db = SQLAlchemy()
 

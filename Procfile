@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT backend.flaskr:app
+web: cd backend && gunicorn --bind 0.0.0.0:$PORT flaskr:app
