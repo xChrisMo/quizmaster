@@ -95,7 +95,7 @@ def create_app(test_config=None):
         categories = Category.query.order_by(Category.id).all()
         categories_result = {}
         for cat in categories:
-            categories_result[cat.id] = cat.type
+            categories_result[str(cat.id)] = cat.type
 
         return jsonify({
             "success": True,
@@ -139,7 +139,7 @@ def create_app(test_config=None):
         categories = Category.query.order_by(Category.id).all()
         categories_result = {}
         for cat in categories:
-            categories_result[cat.id] = cat.type
+            categories_result[str(cat.id)] = cat.type
 
         if len(current_questions) == 0:
             abort(404)
