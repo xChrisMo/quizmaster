@@ -165,16 +165,20 @@ class QuestionView extends Component {
             </span>
           </div>
           <div className='questions-grid'>
-            {this.state.questions.map((q, ind) => (
-              <Question
-                key={q.id}
-                question={q.question}
-                answer={q.answer}
-                category={this.state.categories[q.category]}
-                difficulty={q.difficulty}
-                questionAction={this.questionAction(q.id)}
-              />
-            ))}
+            {Object.keys(this.state.categories).length > 0 ? (
+              this.state.questions.map((q, ind) => (
+                <Question
+                  key={q.id}
+                  question={q.question}
+                  answer={q.answer}
+                  category={this.state.categories[q.category] || 'Unknown'}
+                  difficulty={q.difficulty}
+                  questionAction={this.questionAction(q.id)}
+                />
+              ))
+            ) : (
+              <p>Loading categories...</p>
+            )}
           </div>
           <div className='pagination-container'>
             {this.createPagination()}
