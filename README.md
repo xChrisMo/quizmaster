@@ -2,6 +2,7 @@
 
 A full-stack trivia quiz application built with Flask backend and React frontend, featuring a modern minimalist design.
 
+Try it out on [here](https://your-quizmaster-app-c4690209a8b5.herokuapp.com) really. 
 ## Features
 
 - **Modern UI**: Minimal design with gradient backgrounds and smooth animations
